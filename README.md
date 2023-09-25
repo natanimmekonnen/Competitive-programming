@@ -2,9 +2,6 @@
 <h1 align="center">Hi 👋, I'm Natanim Mekonnen</h1>
 <h3 align="center">As a full stack developer from Ethiopia, I am fueled by my passion for building and creating. I am a driven individual who is always looking for ways to improve my skills and knowledge. I am also a hard worker who is dedicated to my craft.</h3>
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=natanimmekonnen&label=Profile%20views&color=0e75b6&style=flat" alt="natanimmekonnen" /> </p>
-
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=natanimmekonnen" alt="natanimmekonnen" /></a> </p>
 
 - 🔭 I’m currently working on **Java-Script**
 
