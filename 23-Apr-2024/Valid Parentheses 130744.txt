@@ -1,0 +1,37 @@
+# Problem: Valid Parentheses - https://leetcode.com/problems/valid-parentheses
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stk= new Stack<>();
+        char[] p=s.toCharArray();
+        for(char c:p)
+        {
+            if(c=='{'||c=='['||c=='(')
+            {
+                stk.push(c);
+            }
+            else
+            {
+                if(stk.isEmpty())
+                {
+                    return false;
+                }
+                char k=stk.pop();
+                if(c=='}'&& k!='{')
+                {
+                    return false;
+                }
+                if(c==']'&& k!='[')
+                {
+                    return false;
+                }
+                if(c==')'&& k!='(')
+                {
+                    return false;
+                }
+
+            }
+        }
+        return stk.isEmpty();
+        }
+}
