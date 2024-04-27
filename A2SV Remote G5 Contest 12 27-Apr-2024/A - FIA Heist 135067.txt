@@ -1,0 +1,31 @@
+# Problem: A - FIA Heist - https://codeforces.com/gym/520098/problem/A
+
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String word = sc.nextLine();
+        Stack<Character> better = new Stack<>();
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == '<') {
+                if (!better.isEmpty())
+                    better.pop();
+
+                i++;
+            } else {
+                better.push(word.charAt(i));
+            }
+        }
+        StringBuilder newstring = new StringBuilder();
+        while (!better.empty()) {
+            newstring.insert(0, better.pop());
+        }
+        System.out.println(newstring.toString());
+
+
+    }
+}
