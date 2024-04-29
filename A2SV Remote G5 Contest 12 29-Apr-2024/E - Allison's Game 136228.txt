@@ -1,0 +1,55 @@
+# Problem: E - Allison's Game - https://codeforces.com/gym/520098/problem/E
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        Stack<Integer> stack=new Stack<>();
+        int max=0;
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty()&&arr[stack.peek()]>=arr[i])
+            {
+                int h=arr[stack.pop()];
+                int width;
+                if(!stack.isEmpty())
+                {
+                    width=i-stack.peek()-1;
+
+                }
+                else
+                {
+                    width=i;
+                }
+                max=Math.max(max,Math.min(h,width));
+            }
+            stack.push(i);
+
+
+        }
+        while(!stack.isEmpty())
+        {
+            int h=arr[stack.pop()];
+            int width;
+            if(!stack.isEmpty())
+            {
+                width=n-stack.peek()-1;
+
+            }
+            else
+            {
+                width=n;
+            }
+            max=Math.max(max,Math.min(h,width));
+
+
+        }
+        System.out.println(max);
+
+    }
+}
