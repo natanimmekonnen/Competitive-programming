@@ -1,0 +1,50 @@
+# Problem: A - Largest Subsequence - https://codeforces.com/gym/520112/problem/A
+
+#include <bits/stdc++.h>
+#define ll long long
+#define pb push_back
+#define ff first
+#define ss second
+#define mp make_pair
+#define ios ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+using namespace std;
+const ll mod=1e9+7;
+int main()
+{   
+    ios;
+    #ifndef ONLINE_JUDGE
+    freopen("input1.txt", "r", stdin);
+    freopen("/Users/sreejith/Desktop/output.txt", "w", stdout);
+    #endif
+    ll t;
+    cin>>t;
+    while(t--) {
+        ll n; 
+        string str;
+        cin >> n;  
+        cin >> str;
+        vector<ll> lex_idx;
+        
+        for (ll i = 0; i < n; i++) {
+            while (!lex_idx.empty() && (str[i] > str[lex_idx.back()])) lex_idx.pop_back();
+            lex_idx.push_back(i);
+        }
+
+        ll lex_size = lex_idx.size();
+        ll first = str[lex_idx[0]];
+        ll dup =  0;
+        for(ll i = 0 ; i < lex_size ; i++) {
+            if(str[lex_idx[i]] == first)
+                dup++;
+        }
+        for (ll i = 0; i < lex_size/2; i++) 
+            swap(str[lex_idx[i]], str[lex_idx[lex_size - 1 - i]]);
+            
+        if(is_sorted(str.begin(), str.end()))
+            cout<<lex_size-dup<<endl;
+        else
+            cout<<-1<<endl;
+    }
+
+    return 0;
+}
