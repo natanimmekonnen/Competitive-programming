@@ -1,0 +1,36 @@
+# Problem: Decode String - https://leetcode.com/problems/decode-string/
+
+class Solution {
+    public String decodeString(String s) {
+        Stack<Character> stack=new Stack<>();
+        StringBuilder stringb=new StringBuilder();
+        for(char character:s.toCharArray()){
+            if(character!=']'){
+                stack.push(character);
+            }
+            else{
+                stringb=new StringBuilder();
+                while(!stack.isEmpty() && Character.isLetter(stack.peek())){
+                    stringb.insert(0,stack.pop());
+                }
+                stack.pop(); 
+                String sub=stringb.toString();
+                stringb=new StringBuilder();
+                while(!stack.isEmpty() && Character.isDigit(stack.peek())){
+                    stringb.insert(0,stack.pop());
+                }
+                int num=Integer.valueOf(stringb.toString());
+                while(num-->0){
+                    for(char c:sub.toCharArray()){
+                        stack.push(c);
+                    }
+                }
+            }
+        }
+        stringb=new StringBuilder();
+        while(!stack.isEmpty()){
+            stringb.insert(0,stack.pop());
+        }
+        return stringb.toString();
+    }
+}
