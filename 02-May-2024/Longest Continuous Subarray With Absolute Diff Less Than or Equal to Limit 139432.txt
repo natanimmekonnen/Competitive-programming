@@ -1,0 +1,34 @@
+# Problem: Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit - https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/
+
+class Solution {
+    public int longestSubarray(int[] nums, int limit) {
+        Deque<Integer> maxD = new LinkedList<>();
+        Deque<Integer> minD = new LinkedList<>();
+        int i = 0, j = 0;
+        int n = nums.length;
+        int result = 0;
+
+        while (i < n) {
+            while (!maxD.isEmpty() && maxD.peekLast() < nums[i])
+                maxD.pollLast();
+            while (!minD.isEmpty() && minD.peekLast() > nums[i])
+                minD.pollLast();
+            maxD.offerLast(nums[i]);
+            minD.offerLast(nums[i]);
+
+            while (maxD.peekFirst() - minD.peekFirst() > limit) {
+                if (maxD.peekFirst() == nums[j])
+                    maxD.pollFirst();
+                if (minD.peekFirst() == nums[j])
+                    minD.pollFirst();
+                j++;
+            }
+
+            result = Math.max(result, i - j + 1);
+            i++;
+        }
+
+        return result;
+        
+    }
+}
