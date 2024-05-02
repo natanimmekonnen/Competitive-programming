@@ -1,0 +1,66 @@
+# Problem: Design browser history  - https://leetcode.com/problems/design-browser-history/
+
+class BrowserHistory {
+    class ListNode {
+        String val;
+        ListNode next;
+        ListNode prev;
+
+        ListNode() {
+        }
+
+        ListNode(String l) {
+            this.val = l;
+        }
+
+       
+    }
+
+        ListNode head;
+        ListNode tail;
+        ListNode current;
+
+        public  BrowserHistory(String homepage) {
+            head = new ListNode(homepage);
+            current = head;
+            tail = head;
+
+        }
+
+        public void visit(String url) {
+             ListNode newPage = new ListNode(url);
+
+        current.next = newPage;
+        newPage.prev = current;
+        tail = current = newPage;
+
+
+        }
+
+        public String back(int steps) {
+
+            while (steps > 0) {
+                if (current == head) {
+                    return current.val;
+                }
+                current = current.prev;
+                steps--;
+            }
+            return current.val;
+
+        }
+
+        public String forward(int steps) {
+            while (steps > 0) {
+                if (current == tail) {
+                    return current.val;
+                }
+                current = current.next;
+                steps--;
+            }
+            return current.val;
+
+
+        }
+
+}
