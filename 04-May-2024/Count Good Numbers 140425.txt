@@ -1,0 +1,33 @@
+# Problem: Count Good Numbers - https://leetcode.com/problems/count-good-numbers/
+
+class Solution {
+    int MOD = (int) (Math.pow(10, 9) + 7);
+
+    public int countGoodNumbers(long n) {
+        if (n % 2 == 0) {
+            long val = myPow(5, n / 2)%MOD;
+            long vals = myPow(4, n / 2)%MOD;
+            return (int)((val * vals)%MOD);
+        } else {
+            long val = myPow(5, n / 2 + 1);
+            long vals = myPow(4, n / 2);
+            return (int)((val * vals)%MOD);
+
+        }
+
+    }
+
+    public long myPow(long x, long n) {
+        if (n == 0) {
+            return 1;
+        }
+        if (n % 2 == 0) {
+            return( myPow(x * x%MOD, n / 2))%MOD;
+        } else {
+            long multi = myPow(x, n - 1);
+            multi = multi * x;
+            return multi%MOD;
+        }
+
+    }
+}
