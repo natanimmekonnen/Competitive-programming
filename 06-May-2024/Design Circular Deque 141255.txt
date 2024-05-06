@@ -1,0 +1,93 @@
+# Problem: Design Circular Deque - https://leetcode.com/problems/design-circular-deque/
+
+class MyCircularDeque {
+
+ArrayList<Integer> li;
+int num;
+    public MyCircularDeque(int k) {
+        li=new ArrayList<Integer>();
+        this.num=k;
+        
+    }
+    
+    public boolean insertFront(int value) {
+        if(li.size()<=num-1){
+            li.add(0,value);
+            return true;
+        }
+        return false;
+        
+    }
+    
+    public boolean insertLast(int value) {
+          if(li.size()<=num-1){
+            li.add(value);
+            return true;
+        }
+        return false;
+        
+    }
+    
+    public boolean deleteFront() {
+        if(li.size()==0)
+        {
+            return false;
+        }
+        li.remove(0);
+        return true;
+        
+    }
+    
+    public boolean deleteLast() {
+            if(li.size()==0)
+        {
+            return false;
+        }
+        li.remove(li.size()-1);
+        return true;
+        
+    }
+    
+    public int getFront() {
+        if(li.size()==0)
+        {
+            return -1;
+        }
+        return li.get(0);
+        
+    }
+    
+    public int getRear() {
+         if(li.size()==0)
+            return -1;
+        return li.get(li.size()-1);
+        
+    }
+    
+    public boolean isEmpty() {
+         if(li.size()==0)
+            return true;
+        return false;
+        
+    }
+    
+    public boolean isFull() {
+         if(li.size()==num)
+            return true;
+        return false;
+        
+    }
+}
+
+/**
+ * Your MyCircularDeque object will be instantiated and called as such:
+ * MyCircularDeque obj = new MyCircularDeque(k);
+ * boolean param_1 = obj.insertFront(value);
+ * boolean param_2 = obj.insertLast(value);
+ * boolean param_3 = obj.deleteFront();
+ * boolean param_4 = obj.deleteLast();
+ * int param_5 = obj.getFront();
+ * int param_6 = obj.getRear();
+ * boolean param_7 = obj.isEmpty();
+ * boolean param_8 = obj.isFull();
+ */
