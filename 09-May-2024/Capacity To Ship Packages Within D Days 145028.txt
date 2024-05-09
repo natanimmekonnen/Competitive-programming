@@ -1,0 +1,64 @@
+# Problem: Capacity To Ship Packages Within D Days - https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        int sum=0,left,right,max=0;
+        for(int i=0;i<weights.length;i++)
+        {
+            sum+=weights[i];
+            max=Math.max(max,weights[i]);
+
+        }
+        left=max;
+        right=sum;
+       
+        while(left<right)
+        {
+              System.out.println(left+" "+ right);
+            int mid=left+(right-left)/2;
+            
+            
+            if(capacity(mid,weights,days))
+            {
+                right=mid;
+               
+            }
+            else
+            {
+                left=mid+1;
+            }
+        }
+        return right;
+
+
+        
+    }
+    public boolean capacity(int num,int[] nums, int d)
+    {
+        int sum=0;
+        int count=1;
+        
+        for(int i=0;i<nums.length;i++)
+        {
+            sum+=nums[i];
+
+            if(sum>num)
+            {
+                sum=nums[i];
+                count++;
+            }
+
+        }
+
+        if(count<=d)
+        {
+            System.out.println(count);
+            return true;
+        }
+        return false;
+
+        
+    
+
+    }
+}
