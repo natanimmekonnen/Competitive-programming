@@ -1,0 +1,61 @@
+# Problem:  a-Good String - https://codeforces.com/gym/522997/problem/C
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        while (n-- > 0) {
+            int len = scanner.nextInt();
+
+            String tobegood = scanner.next();
+            System.out.println(rec(tobegood, 'a', 0));
+
+
+        }
+
+
+    }
+
+    public static int rec(String half, char a, int operations) {
+        if (half.length() == 1) {
+            if (a == half.charAt(0)) {
+                return operations;
+            }
+            return operations + 1;
+        }
+        StringBuilder firstHalf = new StringBuilder();
+        for (int i = 0; i < half.length() / 2; i++) {
+            firstHalf.append(half.charAt(i));
+        }
+        StringBuilder secondHalf = new StringBuilder();
+        for (int i = half.length() / 2; i < half.length(); i++) {
+            secondHalf.append(half.charAt(i));
+        }
+
+
+        int call1 = rec(firstHalf.toString(), (char) (a + 1), operations + calculate(secondHalf.toString(), a));
+        int call2 = rec(secondHalf.toString(), (char) (a + 1), operations + calculate(firstHalf.toString(), a));
+
+
+        return Math.min(call1, call2);
+    }
+
+    public static int calculate(String val, char p) {
+        int count = 0;
+        for (int i = 0; i < val.length(); i++) {
+            if (val.charAt(i) != p) {
+                count++;
+
+            }
+
+        }
+        return count;
+
+    }
+
+}
+
+
+
