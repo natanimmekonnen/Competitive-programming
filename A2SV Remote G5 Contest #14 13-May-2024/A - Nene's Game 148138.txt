@@ -1,0 +1,44 @@
+# Problem: A - Nene's Game - https://codeforces.com/gym/523225/problem/A
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        while (n-- > 0) {
+            int k = scanner.nextInt();
+            int q = scanner.nextInt();
+            int[] arr=new int[k];
+            for (int i = 0; i <k ; i++) {
+                arr[i]= scanner.nextInt();
+
+            }
+            for (int i = 0; i <q ; i++) {
+                int a= scanner.nextInt();
+                if(a<arr[0]){
+                    System.out.println(a+" ");
+                }
+                else
+                {
+                    System.out.println(arr[0]-1+" ");
+                }
+
+            }
+            System.out.println();
+
+
+
+        }
+
+    }
+
+
+
+
+}
+
+
+
