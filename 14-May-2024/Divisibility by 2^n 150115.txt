@@ -1,0 +1,55 @@
+# Problem: Divisibility by 2^n - https://codeforces.com/contest/1744/problem/D
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int num = sc.nextInt();
+            int num2 = num;
+            int ope=0;
+            List<Integer> arr = new ArrayList<>();
+            for (int i = 0; i < num; i++) {
+                int n = sc.nextInt();
+                arr.add(n);
+                int temp = n;
+
+                while (temp % 2 == 0) {
+                    temp /= 2;
+                    num2--;
+                }
+            }
+            List<Integer> hold = new ArrayList<>();
+
+            for (int i = 1; i <= num; i++) {
+                int count = 0;
+                int tempo = i;
+                while (tempo % 2 == 0) {
+                    tempo /= 2;
+                    count++;
+                }
+                hold.add(count);
+
+            }
+            hold.sort(Comparator.reverseOrder());
+            for(int m:hold)
+            {
+                if(num2>0)
+                {
+                    num2-=m;
+                    ope++;
+                }
+            }
+            System.out.println(num2>0?-1:ope);
+
+        }
+    }
+
+
+}
+
+
+
