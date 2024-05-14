@@ -1,0 +1,35 @@
+# Problem: Problemsolving Log - https://codeforces.com/gym/522997/problem/A
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0){
+            int num=sc.nextInt();
+            String str=sc.next();
+            int count =0;
+            int[] arr=new int[26];
+            for(int i=0;i<num;i++){
+                arr[str.charAt(i)-'A']++;
+            }
+            for(int i=0;i<26;i++){
+                if(arr[i]>=i+1){
+                    count++;
+                }
+            }
+            System.out.println(count);
+        }
+    }
+
+
+
+
+
+
+}
+
+
+
