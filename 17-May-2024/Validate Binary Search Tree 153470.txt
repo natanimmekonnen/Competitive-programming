@@ -1,0 +1,69 @@
+# Problem: Validate Binary Search Tree - https://leetcode.com/problems/validate-binary-search-tree/
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        if(root==null)
+        {
+            return true;
+        }
+        if(root.left!=null&&findMax(root.left)>=root.val)
+        {
+            return false;
+        }
+         if(root.right!=null&&findMin(root.right)<=root.val)
+        {
+            return false;
+        }
+        if(isValidBST(root.left)&&isValidBST(root.right))
+        {
+            return true;
+        }
+        return false;
+        
+    }
+    public int findMin( TreeNode root)
+    {
+        if(root==null)
+        {
+            return 0;
+        }
+        if(root.left==null)
+        {
+            return root.val;
+        }
+        return findMin(root.left);
+
+        
+
+    }
+    public int findMax( TreeNode root)
+    {
+        if(root==null)
+        {
+            return 0;
+        }
+        if(root.right==null)
+        {
+            return root.val;
+        }
+        return findMax(root.right);
+
+        
+
+    }
+}
