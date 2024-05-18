@@ -1,0 +1,56 @@
+# Problem: B - Correct Solution? - https://codeforces.com/gym/524150/problem/B
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String n= sc.next();
+        String m= sc.next();
+        if(n.length()!=m.length())
+        {
+            System.out.println("WRONG_ANSWER");
+        }
+        else if(n.equals("0")&&m.equals("0"))
+        {
+            System.out.println("OK");
+
+        }
+        else if(n.equals("0")&&!m.equals("0"))
+        {
+            System.out.println("WRONG_ANSWER");
+        }
+        else if(!n.equals("0")&&m.equals("0"))
+        {
+            System.out.println("WRONG_ANSWER");
+        }
+        else {
+            char[] num=n.toCharArray();
+            Arrays.sort(num);
+            int j=0;
+            while (num[j]=='0')
+            {
+                j++;
+            }
+            char nums=num[j];
+            num[j]=num[0];
+            num[0]=nums;
+            String str=new String(num);
+            if(str.equals(m))
+            {
+                System.out.println("OK");
+            }
+            else {
+                System.out.println("WRONG_ANSWER");
+            }
+        }
+
+
+    }
+
+
+}
+
+
+
