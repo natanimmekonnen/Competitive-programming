@@ -1,0 +1,62 @@
+# Problem: C - Eating Candies - https://codeforces.com/gym/524150/problem/C
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while (t-->0)
+        {
+            int n= sc.nextInt();
+            int arr[]=new  int[n];
+            for (int i = 0; i <n ; i++) {
+                arr[i]=sc.nextInt();
+            }
+            int low=0,high=n-1,sml=0,smr=0;
+            int max=0;
+            while (low<=high){
+                if(sml<smr)
+                {
+                    sml=sml+arr[low];
+                    low++;
+                }
+                else {
+                    smr=smr+arr[high];
+                    high--;
+
+                }
+                if (sml==smr)
+                {
+                    max=low+(n-high-1);
+
+                }
+            }
+            System.out.println(max);
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
