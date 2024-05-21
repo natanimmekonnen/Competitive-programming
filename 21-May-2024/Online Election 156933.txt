@@ -1,0 +1,48 @@
+# Problem: Online Election - https://leetcode.com/problems/online-election/
+
+
+class TopVotedCandidate {
+    int[] times;
+    int[] num;
+
+    public TopVotedCandidate(int[] persons, int[] times) {
+
+        this.times = times;
+        num = new int[persons.length];
+
+        int[] arr = new int[persons.length];
+        int max = 0, l = -1;
+
+        for (int i = 0; i < persons.length; i++) {
+            int per = persons[i];
+            int t = times[i];
+
+            arr[per]++;
+            if (arr[per] >= max) {
+                max = arr[per];
+                l = per;
+            }
+
+            num[i] = l;
+        }
+    }
+
+    public int q(int t) {
+        int start = 0, end = times.length - 1;
+        while (start < end) {
+            int mid =  (start + end + 1) / 2;
+            if (times[mid] <= t) {
+                start = mid;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return num[start];
+    }
+}
+
+/**
+ * Your TopVotedCandidate object will be instantiated and called as such:
+ * TopVotedCandidate obj = new TopVotedCandidate(persons, times);
+ * int param_1 = obj.q(t);
+ */
