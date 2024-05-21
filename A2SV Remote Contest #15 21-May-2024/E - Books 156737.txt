@@ -1,0 +1,53 @@
+# Problem: E - Books - https://codeforces.com/gym/524150/problem/E
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int x=sc.nextInt();
+
+       int arr[]=new int[t];
+       for(int i=0;i<t;i++)
+       {
+           arr[i]= sc.nextInt();
+       }
+       int time=0;
+       int max=0;
+       int start=0;
+       for(int i=0;i<t;i++)
+       {
+           time+=arr[i];
+           while (time>x)
+           {
+               time-=arr[start];
+               start++;
+           }
+           max=Math.max(max,i-start+1);
+       }
+        System.out.println(max);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
