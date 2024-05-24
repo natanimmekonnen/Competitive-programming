@@ -1,0 +1,26 @@
+num=int(input())
+pos=list(map(int,input().split()))
+sp=list(map(int,input().split()))
+
+
+
+
+
+
+def func(mid):
+    one,two=pos[0]-sp[0]*mid,pos[0]+sp[0]*mid
+    for i in range(1,num):
+        time1,time2=pos[i]-sp[i]*mid,pos[i]+sp[i]*mid
+        one,two=max(one,time1),min(two,time2)
+    return two>=one
+
+
+left,right=0,max(pos)-min(pos)
+t=10**-6
+while right-left>t:
+    mid=(left+right)/2
+    if func(mid):
+        right=mid
+    else:
+        left=mid
+print(right)
