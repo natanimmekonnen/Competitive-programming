@@ -1,0 +1,85 @@
+# Problem: C - Building an Aquarium - https://codeforces.com/gym/525787/problem/C
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        while(t-->0)
+        {
+            int num=sc.nextInt();
+            int water= sc.nextInt();
+            int arr[]=new int[num];
+            for (int i = 0; i < num; i++) {
+                arr[i]= sc.nextInt();
+            }
+            calc(arr,water);
+
+        }
+
+
+    }
+    public static void calc(int[] arr,int water)
+    {
+        int left=1,right= Integer.MAX_VALUE;
+        int ans=-1;
+        while (left<=right)
+        {
+
+            int mid=left+(right-left)/2;
+            int val=answer(mid,arr, water);
+            if(val>water)
+            {
+                right=mid-1;
+            }
+            else
+            {
+                ans=mid;
+                left=mid+1;
+            }
+
+
+
+        }
+        System.out.println(ans);
+    }
+    public static int answer(int val, int[] arr, int water)
+    {
+        int an=0;
+        for (int i = 0; i <arr.length ; i++) {
+            if (arr[i]>=val)
+            {
+                continue;
+            }
+            an+=val-arr[i];
+            if(an>water)
+            {
+                an= Integer.MAX_VALUE;
+                break;
+
+
+            }
+
+        }
+
+        return  an;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
