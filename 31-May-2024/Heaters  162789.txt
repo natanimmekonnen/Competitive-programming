@@ -1,0 +1,26 @@
+# Problem: Heaters  - https://leetcode.com/problems/heaters/
+
+class Solution {
+    public int findRadius(int[] houses, int[] heaters) {
+        Arrays.sort(houses);
+        Arrays.sort(heaters);
+        int minimum_radius = 0, index = 0;
+        int left, right;
+        for (int h : houses) {
+            while (index < heaters.length - 1 && heaters[index] <= h) {
+                index++;
+            }
+            if (index < 1) {
+
+                left = Math.abs(h - heaters[0]);
+            } else {
+
+                left = Math.abs(h - heaters[index - 1]);
+            }
+            right = Math.abs(heaters[index] - h);
+            minimum_radius = Math.max(minimum_radius, Math.min(left, right));
+        }
+        return minimum_radius;
+
+    }
+}
