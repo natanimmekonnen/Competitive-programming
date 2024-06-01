@@ -1,0 +1,23 @@
+# Problem: Sum of Subarray minimums - https://leetcode.com/problems/sum-of-subarray-minimums/
+
+class Solution {
+    public int sumSubarrayMins(int[] arr) {
+     int mod = 1000000007;
+
+        int[] st = new int[arr.length + 1];
+        int index = 0;
+
+        long res = 0;
+        for (int i = 1; i <= arr.length; i++) {
+            while (index >= 0 && (i == arr.length || arr[st[index]] > arr[i])){
+                int idx = st[index];
+                index--;
+                int leftIdx = index < 0 ? -1 : st[index];
+                res += 1l * arr[idx] * (i - idx) * (idx - leftIdx);
+            }
+            st[++index] = i;
+        }
+        return (int) (res % mod);
+        
+    }
+}
