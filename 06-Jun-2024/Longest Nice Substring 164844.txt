@@ -1,0 +1,40 @@
+# Problem: Longest Nice Substring - https://leetcode.com/problems/longest-nice-substring/
+
+class Solution {
+    public String longestNiceSubstring(String s) {
+        int mid = 101;
+        if (s.length() == 1) {
+            return "";
+        }
+
+        HashSet<Character> substring = new HashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            substring.add(s.charAt(i));
+            System.out.println("blink");
+        }
+         System.out.println("k");
+        for (int i = 0; i < s.length(); i++) {
+            if (!(substring.contains(Character.toUpperCase(s.charAt(i)))
+                    && (substring.contains(Character.toLowerCase(s.charAt(i)))))) {
+              
+            String n = longestNiceSubstring(s.substring(0, i));
+            String m = longestNiceSubstring(s.substring(i+1));
+            if (n.length() >= m.length()) {
+                return n;
+            } else {
+                return m;
+            }
+        
+              
+
+            }
+        
+
+        }
+      
+            return s;
+        
+        
+
+    }
+}
