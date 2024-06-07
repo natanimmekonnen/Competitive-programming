@@ -1,0 +1,27 @@
+# Problem: Combination Sum - https://leetcode.com/problems/combination-sum/
+
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        List<Integer> temp = new ArrayList<>();
+        backtrack(0, candidates, target, ans, temp);
+        return ans;
+    }
+
+    private void backtrack(int i, int[] arr, int target, List<List<Integer>> ans, List<Integer> comb) {
+        if (target == 0) {
+            ans.add(new ArrayList<>(comb));
+            return;
+        }
+
+        if (i == arr.length || target < 0) {
+            return;
+        }
+
+        comb.add(arr[i]);
+        backtrack(i, arr, target - arr[i], ans, comb);
+        comb.remove(comb.size() - 1);
+
+        backtrack(i + 1, arr, target, ans, comb);
+    }
+}
