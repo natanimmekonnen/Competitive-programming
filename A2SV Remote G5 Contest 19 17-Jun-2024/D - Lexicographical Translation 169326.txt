@@ -1,0 +1,52 @@
+# Problem: D - Lexicographical Translation - https://codeforces.com/gym/529269/problem/D
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        int[] freq = new int[26];
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        Stack<Character> t = new Stack<>();
+        StringBuilder u = new StringBuilder();
+
+        for (char c : s.toCharArray()) {
+            t.push(c);
+            freq[c - 'a']--;
+            while (!t.isEmpty() && canMoveToU(t.peek(), freq)) {
+                u.append(t.pop());
+            }
+        }
+        while (!t.isEmpty()) {
+            u.append(t.pop());
+        }
+
+        System.out.println(u.toString());
+    }
+
+    private static boolean canMoveToU(char c, int[] freq) {
+        int index = c - 'a';
+        for (int i = 0; i < index; i++) {
+            if (freq[i] > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
